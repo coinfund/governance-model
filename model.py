@@ -46,21 +46,15 @@ def get_decisiveness(distro, majority, j, memo = {}, verbose=False):
     is decisive in the vote.
     """
     def is_decisive(vote, j):
-        if vote == 0:
-            return distro[j] > majority
-
         # set j-th bit to 0
         j_zero = (2**(bit_length)-1) ^ (1 << j)
         vote1 = vote & j_zero
         result1 = get_vote(vote1)
      
-        # set j-th bit to 1
-        vote2 = vote | bit_not(j_zero, bit_length)
-        result2 = get_vote(vote2)
-     
+
         # true if and only if the j-th token holder overturns
         # the vote
-        return ((result1 <= majority) and (result2 > majority))
+        return ((result1 <= majority) and (result1 > majority - distro[j]))
         
     count = 0
     vote = 0
