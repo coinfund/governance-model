@@ -1,0 +1,45 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+
+\title{A governance valuation framework}
+\author{@jbrukh}
+\date{March 2019}
+
+\begin{document}
+
+\maketitle
+
+\section{Voting distribution}
+
+Suppose you are in a governance system where voting power is denoted by a token across $n$ token holders. Let the token holder stake be denoted by a vector
+
+$$\mathbf{s} = (s_1,s_2,\ldots,s_n)$$\\
+where $\sum s_j = 1$. Now, define a \textit{vote} as an $n$-dimensional vector of binary digits
+
+$$\mathbf{v} = \left(v_1, v_2, \ldots, v_n\eight)$$\\
+where $v_j \in \{0, 1\}$. Given a real positive number $M\in[0.50,1)$, and some distribution $\mathbf{s}$, and some vote $\mathbf{v}$ such that 
+
+$$ \mathbf{s}\cdot \mathbf{v} > M$$\\
+we will say that ``the vote passes''. Otherwise, ``the vote is rejected.'' We say that $M$ is the ``majority required'' for the vote to pass.
+
+\section{Decisive votes}
+
+For some token holders, for some votes, their stake and vote is the difference between a proposal passing or not passing. Let us formalize this. Define $\mathbf{v_0}(j) := (v_1, v_2, \ldots, v_j, \ldots, v_n), v_j = 0$, the vote $\mathbf{v_j}$ where the $j$-th digit is flipped to $0$. Similarly, define $\mathbf{v_1}(j) := (v_1, v_2, \ldots, v_j, \ldots, v_n), v_j = 1$. Given a stakeholder distribution $\mathbf{s}$ and a vote $\mathbf{v}$, we say that token holder $j$'s vote was \textit{decisive} if and only if the following condition holds.
+
+\begin{equation}
+        \mathbf{s}\cdot\mathbf{v_0}(j) \leq M\text{\ but\ } \mathbf{s}\cdot\mathbf{v_1}(j) > M
+\end{equation}\\
+Intuitively, a token holder's stake in a particular vote is decisive if and only if it has the power to overturn the outcome of the vote.
+Note that we can shorten the characterization of a decisive vote as follows. A token holder $j$ is decisive to a vote with respect to token distribution $\mathbf{s}$ if and only if
+
+$$M - s_j < \mathbf{s}\cdot\mathbf{v_0}(j) \leq M.$$\\
+The last inequality follows by definition from $(1)$. The strict inequality follows by adding $s_j$ to both sides.
+
+
+\section{Calculating decisiveness}
+
+Let $\mathcal{V}_n$ be set of all possible votes on $n$ token holders, that is, the set of all $n$-dimensional vectors of binary digits. Given some stake distribution $\mathbf{s}$, and given some token holder $j$, let $\mathcal{D}_n(j)$ be the set of decisive votes with respect to $j$. Then define the \textif{decisiveness of $j$ with respect to $\mathbf{s}$} as $$D(j) := |\mathcal{D}_n(j)|/|\mathcal{V}_n|.$$
+Note also that $|D(j)|\leq 1$.
+
+\end{document}
+
