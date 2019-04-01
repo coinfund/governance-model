@@ -92,3 +92,23 @@ $ ./model.py 10 1 1 1 1 1 1 1 1 1 1 1
 10     1.0  0.047619      0.000977
 11     1.0  0.047619      0.000977
 ```
+
+## Example: Marginal increases in stake
+
+Marginal increases in stake can lead to dramatic increases in decisiveness. The following example shows one case where a uniform distribution is heavily skewed toward a particular token holder by a increase in her stake of a single token.
+
+```
+$ ./model.py 50 50 50 50
+   tokens  stake  decisiveness
+0    50.0   0.25         0.375
+1    50.0   0.25         0.375
+2    50.0   0.25         0.375
+3    50.0   0.25         0.375
+
+$ ./model.py 51 50 50 50
+   tokens     stake  decisiveness
+0    51.0  0.253731          0.75
+1    50.0  0.248756          0.25
+2    50.0  0.248756          0.25
+3    50.0  0.248756          0.25
+```
