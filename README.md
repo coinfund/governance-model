@@ -1,5 +1,7 @@
 # A relative value model for governance tokens
 
+Author: [Jake Brukhman](mailto:jake@coinfund.io)
+
 ## Abstract
 
 In blockchain networks, and more broadly in decentralized technology, tokens are often used to implement governance processes. So-called "governance tokens" are used to perform on-chain voting functions, allow or disallow protocol upgrades, and signal community sentiment around various network proposals. However, other than \[Bonello, 2018\], no quantitative valuation frameworks for governance tokens have been suggested. In this work, we describe a relative value model for governance tokens based on a concept called "decisiveness" of a particular token holder's stake relative to a token distribution. The idea of decisive stakes allows us to impose an ordering on token stakes and therefore value one stake versus another. This subsequently paves the way for valuation in absolute terms.
