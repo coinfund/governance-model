@@ -131,4 +131,4 @@ In the following examples, we take uniform token distributions on 3, 4, 10, and 
 
 ### n = 25
 
-![](https://i.imgur.com/QbcOlOp.png)
+![](https://i.imgur.com/2OltqJR.png)
