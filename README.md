@@ -30,17 +30,22 @@ We make the following assumptions, for simplicity:
 1. There is a token distribution, which measures the number of participants and each of their relative stakes.
 2. The quorum of either stake or participants required to pass a proposal is 0.
 3. Voting is binary (yea and nea) instead of trinary (yea, nea, and abstain).
-4. There is some majority threshold, *M*, which a proposal needs to achieve in voting in order to pass. (Typically *M* = .50.)
+4. There is some majority threshold, *M*, which a proposal needs to achieve in voting in order to pass. (Typically *M* = 50%.)
 
 In our [formal description](https://github.com/coinfund/governance-model/blob/master/Relative_Governance.pdf), we formalize the notion of a "decisive stake" with respect to a token distribution and a vote. A decisive stake is one upon which the outcome of a particular vote hinges: if the voter doesn't participate, the proposal fails to pass; and otherwise, it passes.
 
-Similarly, we formalize the notion of the "decisiveness" of a stake with respect to a token distribution. The decisiveness of a stake is a meaure of the expected percent of the time that the stake is decisive to a vote. By calculating decisiveness
+Similarly, we formalize the notion of the "decisiveness" of a stake with respect to a token distribution. The decisiveness of a stake is a meaure of the expected percent of the time that the stake is decisive to a vote. By calculating decisiveness, we are able to understand the relationship between the size of the stake and the influence that it can exert upon the outcomes of proposals. 
 
+## Conclusions
 
-So we have a natural mapping between the size of a stake and its "decisiveness", and this allows us to show that some stakes are worth more or less than others. The results are surprising!
+1. Through our formalization and implementation, we demonstrate how the decisiveness metric might be computed.
+2. We demonstrate that stake size and decisiveness are positively correlated, and in some cases result in an exponential relationship.
+3. The relationship between stake size and decisiveness is similar to a step function and is not differentiable. Therefore, sometimes adding marginal stake to a position disproportionally increases its decisiveness.
+4. Our work suggests that under certain distributions, small stakes have infinitessimally small or zero decisiveness, rendering them valueless. This presents challenges for the liquidity of governance tokens as then having positive price of individual tokens makes sense only in the context of an aggregate lot of tokens.
 
-## Example: Uniformly-distributed token distribution
+## Example: Uniform token distribution
 
+In this basic example, we consider a governance system with four equal token holders possessing 100 tokens each. Each token holder then owns 25% of network stake, and the distribution is uniform. The decisiveness of each token holder is equal and is 37.5% -- meaning, that each token holder expects to be able to overturn 37.5% of possible voting scenarios.
 ```
 $ ./model.py 100 100 100 100
    tokens  stake  decisiveness
@@ -48,4 +53,42 @@ $ ./model.py 100 100 100 100
 1   100.0   0.25         0.375
 2   100.0   0.25         0.375
 3   100.0   0.25         0.375
+```
+
+## Example: Dictatorship scenario
+
+In this scenario, we demonstrate the case that a token holder who holds more than the majority threshold (50%) worth of stake becomes the dictator of the system and is able to block or uphold proposals 100% of the time. In such a system, small token holders have literally lost all power in the system and their individual tokens are worthless.
+
+```
+$ ./model.py 10 1 1 1 1 1 1 1 1 1
+   tokens     stake  decisiveness
+0    10.0  0.526316           1.0
+1     1.0  0.052632           0.0
+2     1.0  0.052632           0.0
+3     1.0  0.052632           0.0
+4     1.0  0.052632           0.0
+5     1.0  0.052632           0.0
+6     1.0  0.052632           0.0
+7     1.0  0.052632           0.0
+8     1.0  0.052632           0.0
+9     1.0  0.052632           0.0
+```
+
+Even when there is a group of token holders than can collectively outvote whales, their decisiveness is still infinitessimally small and the system closely approximates a dictatorship.
+
+```
+$ ./model.py 10 1 1 1 1 1 1 1 1 1 1 1
+    tokens     stake  decisiveness
+0     10.0  0.476190      0.999023
+1      1.0  0.047619      0.000977
+2      1.0  0.047619      0.000977
+3      1.0  0.047619      0.000977
+4      1.0  0.047619      0.000977
+5      1.0  0.047619      0.000977
+6      1.0  0.047619      0.000977
+7      1.0  0.047619      0.000977
+8      1.0  0.047619      0.000977
+9      1.0  0.047619      0.000977
+10     1.0  0.047619      0.000977
+11     1.0  0.047619      0.000977
 ```
