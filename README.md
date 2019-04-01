@@ -112,3 +112,23 @@ $ ./model.py 51 50 50 50
 2    50.0  0.248756          0.25
 3    50.0  0.248756          0.25
 ```
+
+## Example: Decisiveness as a function of stake
+
+In the following examples, we take uniform token distributions on 3, 4, 10, and 25 token holders and we show what happens when a marginal token holder begins to accumulate stake and uniformly dilute the others. The result is an approximation of an exponential function, where the decisiveness of the accumulating token holder grows as a function of her stake.
+
+### n = 3
+
+![](https://i.imgur.com/6lLRAc2.png)
+
+### n = 4
+
+![](https://i.imgur.com/BkfrxdK.png)
+
+### n = 10
+
+![](https://i.imgur.com/gIHaSRl.png)
+
+### n = 25
+
+![](https://i.imgur.com/QbcOlOp.png)
