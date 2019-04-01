@@ -1,6 +1,6 @@
 # A relative value model for governance tokens
 
-Author: [Jake Brukhman](mailto:jake@coinfund.io)
+Author: [Jake Brukhman](mailto:jake@coinfund.io), [CoinFund](http://coinfund.io)
 
 ## Abstract
 
