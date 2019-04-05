@@ -36,7 +36,7 @@ We make the following assumptions, for simplicity:
 
 In our [formal description](https://github.com/coinfund/governance-model/blob/master/Relative_Governance.pdf), we formalize the notion of a "decisive stake" with respect to a token distribution and a vote. A decisive stake is one upon which the outcome of a particular vote hinges: if the voter doesn't participate, the proposal fails to pass; and otherwise, it passes.
 
-Similarly, we formalize the notion of the "decisiveness" of a stake with respect to a token distribution. The decisiveness of a stake is a meaure of the expected percent of the time that the stake is decisive to a vote. By calculating decisiveness, we are able to understand the relationship between the size of the stake and the influence that it can exert upon the outcomes of proposals. 
+Similarly, we formalize the notion of the "decisiveness" of a stake with respect to a token distribution. The decisiveness of a stake is a measure of the expected percent of the time that the stake is decisive to a vote. By calculating decisiveness, we are able to understand the relationship between the size of the stake and the influence that it can exert upon the outcomes of proposals. 
 
 ## Conclusions
 
