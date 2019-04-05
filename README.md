@@ -31,7 +31,7 @@ We make the following assumptions, for simplicity:
 
 1. There is a token distribution, which measures the number of participants and each of their relative stakes.
 2. The quorum of either stake or participants required to pass a proposal is 0.
-3. Voting is binary (yea and nea) instead of trinary (yea, nea, and abstain).
+3. Voting is binary (yea and nay) instead of trinary (yea, nay, and abstain). (However, the model herein is easily extensible to trinary voting or other schemes.)
 4. There is some majority threshold, *M*, which a proposal needs to achieve in voting in order to pass. (Typically *M* = 50%.)
 
 In our [formal description](https://github.com/coinfund/governance-model/blob/master/Relative_Governance.pdf), we formalize the notion of a "decisive stake" with respect to a token distribution and a vote. A decisive stake is one upon which the outcome of a particular vote hinges: if the voter doesn't participate, the proposal fails to pass; and otherwise, it passes.
